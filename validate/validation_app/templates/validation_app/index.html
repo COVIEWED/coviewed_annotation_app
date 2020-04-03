@@ -1,0 +1,31 @@
+  {% load static %}
+  <!doctype html>
+  <html>
+  
+  <head>
+      <meta charset="utf-8">
+      <title>
+          {% block title %}
+          {{ page_title|default:"Claim Validation" }}
+         {% endblock title %}
+     </title>
+     <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+     <div id="wrapper">
+         <section id="main">
+             {% block content %}
+             <p>It is claimed that:</p>
+             <p><b>{{ claim_to_validate }}</b></p>
+             <form action="/validation_app/" method="post">
+    {% csrf_token %}
+    {{ form }}
+        <input type="submit" value="Submit now">
+    </fieldset>
+</form>
+             {% endblock content %}
+         </section>
+      </div>
+ </body>
+ 
+ </html>
